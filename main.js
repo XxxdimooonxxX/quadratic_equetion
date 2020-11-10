@@ -22,6 +22,7 @@ bt.onclick = () => {
 	for(i = 0; i < d_len; i++){
 		if(data[i] == " "){
 			data = data.slice(0, i) + data.slice(i + 1);
+			i--;
 		}
 	}
 	d_len	= data.length;		//update length data
