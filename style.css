@@ -97,3 +97,8 @@ p{
 	border: 2px dotted #E3AA02;
 	padding: 5px;
 }
+
+canvas{
+	border: 2px dotted #E3AA02;
+	margin-top: 5px;
+}

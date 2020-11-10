@@ -8,6 +8,8 @@
 var inp		= document.querySelector("#inp_user");		//"data" from input			//
 var bt		= document.querySelector("#add");			//batton result				//
 var p		= document.querySelector("p");				//output result data		//
+var canvas	= document.getElementById("fun");			//canvas					//
+var ctx		= canvas.getContext('2d');					//get context from canvas	//
 var ix_1, ix_2;											//positions "x"				//
 var a = 1, b = 1, c = 1;								//"koof"					//
 var D, x1, x2;											//"discrimination" and x1,x2//
@@ -39,7 +41,7 @@ bt.onclick = () => {
 				else a += data[j];
 			}
 			
-			if(a == "-") a = -1;
+			if(a == "-" && data[1] == "x") a = -1;
 		}
 		
 		//ix_2
@@ -79,12 +81,23 @@ bt.onclick = () => {
 	p.innerHTML += "x1 = " + x1 + "</br>";
 	p.innerHTML += "x2 = " + x2 + "</br>";
 
+	var size = 300;
 	if(D > 0){
 		p.innerHTML += "Имеются два корня</br>";
 	}else if(D == 0){
 		p.innerHTML += "Имеется только один корень</br>";
 	}else{
 		p.innerHTML += "Нет корней</br>";
+		size = 0;
+	}
+	
+	//show function in graphic
+	var x, y;
+	//var size = 300;
+	for(i = -size; i < size; i++){
+		x = i/5;
+		y = (a * (x * x) + b * x + c)/5;
+		ctx.fillRect(x+300, -y+300, 10, 10);
 	}
 	
 	//without comment
