@@ -71,7 +71,7 @@ bt.onclick = () => {
 	c = +c;
 	
 	//search D, x1 and x2
-	D	= (b * b) + 4 * a * c;
+	D	= (b * b) - 4 * a * c;
 	x1	= (-b - Math.sqrt(D)) / 2 * a;
 	x2	= (-b + Math.sqrt(D)) / 2 * a;
 	
@@ -80,25 +80,55 @@ bt.onclick = () => {
 	p.innerHTML += "D = " + D + "</br>";
 	p.innerHTML += "x1 = " + x1 + "</br>";
 	p.innerHTML += "x2 = " + x2 + "</br>";
-
-	var size = 300;
+	
 	if(D > 0){
 		p.innerHTML += "Имеются два корня</br>";
 	}else if(D == 0){
 		p.innerHTML += "Имеется только один корень</br>";
 	}else{
 		p.innerHTML += "Нет корней</br>";
-		size = 0;
 	}
 	
-	//show function in graphic
+	//===show function in graphic===
 	var x, y;
-	//var size = 300;
+	var size = canvas.width/2;
+	
+	//black fon:
+	ctx.fillStyle = "#000";
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+	
+	//draw x-axis
+	ctx.beginPath();
+	ctx.strokeStyle = "lightGreen";
+	ctx.lineWidth = 2.0;
+	ctx.moveTo(0, canvas.width/2);
+	ctx.lineTo(canvas.height, canvas.width/2);
+	ctx.stroke();
+	
+	//draw y-asix
+	ctx.beginPath();
+	ctx.strokeStyle = "skyBlue";
+	ctx.lineWidth = 2.0;
+	ctx.moveTo(canvas.height/2, 0);
+	ctx.lineTo(canvas.height/2, canvas.width);
+	ctx.stroke();
+	
+	//draw graphik
+	ctx.beginPath();
 	for(i = -size; i < size; i++){
-		x = i/5;
-		y = (a * (x * x) + b * x + c)/5;
-		ctx.fillRect(x+300, -y+300, 10, 10);
+		x = i;
+		y = (a * (x * x) + b * x + c*10)/10;
+		
+		ctx.strokeStyle = "#FFAA11";
+		ctx.lineWidth = 2.0;
+		if(i == -size){
+			ctx.moveTo(x + size, -y + size);
+		}else{
+			ctx.lineTo(x + size, -y + size);
+		}
+		ctx.stroke();
 	}
+	//===end show function in graphic===
 	
 	//without comment
 	a = b = c = 1;
